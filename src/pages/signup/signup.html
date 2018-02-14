@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'HOME.TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form (submit)="doSignup()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>{{ 'HOME.NAME' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>{{ 'HOME.EMAIL' | translate }}</ion-label>
+        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+      </ion-item>
+      <div>
+        <h2>{{ 'HOME.TITLE' | translate }}</h2>
+        <label>
+          {{ 'HOME.SELECT' | translate }}
+          <select #langSelect (change)="translate.use(langSelect.value)">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+          </select>
+        </label>
+      </div>
+      <ion-item>
+        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
+      </div>
+
+    </ion-list>
+    <div id="google_translate_element"></div>
+   
+  </form>
+
+
+  <div>
+    <button id="prev">Previous</button>
+    <button id="next">Next</button>
+    &nbsp; &nbsp;
+    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+  </div>
+   <button id="pdfbtn" (click)="openpdf()">pdf</button>
+  <!-- <canvas id="the-canvas" style="display:none;"></canvas> -->
+  <!-- <div id="the-canvas" >
+    <object data="pdf_file_name.pdf" type="application/pdf" width="600" height="400">
+    alt : <a href="http://cdn.mozilla.net/pdfjs/tracemonkey.pdf"></a>
+</object></div> -->
+<!-- <object data="http://mozilla.github.io/pdf.js/web/viewer.html" type="application/pdf" width="100%" height="100%">
+  <p><a href="http://mozilla.github.io/pdf.js/web/viewer.html">Download PDF</a>.</p>
+</object> -->
+</ion-content>
